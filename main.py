@@ -1,30 +1,34 @@
 from math import comb
 
-hashmap_s1 = {}
 arr = []
 f = open("words_alpha.txt", "r")
+input_length = 0
 
-#Get all the words that are 5 letters 
-#Take an input where the _are unknown words
-arr = ['_' for i in range(5)]
+#input from the user 
+while (input_length != 5): 
+    combination = input("Enter your woordle result: ")
+    input_length = len(combination)
 
-combination = input("Enter your woordle result: ")
-print(combination)
+#Create an array that holds letters that are valid 
+for x in range(len(combination)): 
+    if(combination[x] != "_"):
+        arr.append(x)
 
-#print out the acceptable words with those conditions 
+#Compare the words in the dictionary and user input 
 Lines = f.readlines()
 for x in Lines:
     if (len(x) == 6):
-        #if the position and the letter of the word = to the hashmap position and word where position = VALUE and letter is the KEY
-        if(combination[1] == x[1] and combination[2] == x[2] and combination[3] == x[3]): 
-            print("Word", x)
+        if (len(arr) == 4): 
+            if((combination[arr[len(arr)-1]] == x[arr[len(arr)-1]]) and (combination[arr[len(arr)-2]] == x[arr[len(arr)-2]]) and (combination[arr[len(arr)-3]] == x[arr[len(arr)-3]]) and (combination[arr[len(arr)-4]] == x[arr[len(arr)-4]])):
+                print(x)
+        elif (len(arr) == 3): 
+            if((combination[arr[len(arr)-1]] == x[arr[len(arr)-1]]) and (combination[arr[len(arr)-2]] == x[arr[len(arr)-2]]) and (combination[arr[len(arr)-3]] == x[arr[len(arr)-3]])):
+                print(x)
+        elif (len(arr) == 2): 
+            if((combination[arr[len(arr)-1]] == x[arr[len(arr)-1]]) and (combination[arr[len(arr)-2]] == x[arr[len(arr)-2]])):
+                print(x)
+        elif (len(arr) == 1): 
+            if((combination[arr[len(arr)-1]] == x[arr[len(arr)-1]])):
+                print(x)            
         else:
             continue
-
-
-
-
-        #do something
-        #print("Word",x) 
-    #else: 
-        #continue 
